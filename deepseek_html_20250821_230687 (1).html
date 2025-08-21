@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdKaro Advertising - Website Requirements Specification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            section {
+                page-break-before: always;
+            }
+            section:first-child {
+                page-break-before: avoid;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            table, img {
+                page-break-inside: avoid;
+            }
+        }
+        .requirement-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .requirement-table th, .requirement-table td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .requirement-table th {
+            background-color: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 p-4 md:p-8 max-w-6xl mx-auto">
+    <div class="no-print flex justify-between items-center mb-8">
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+            Print as PDF
+        </button>
+        <div class="text-sm text-gray-500">AdKaro Advertising - Website Requirements Document</div>
+    </div>
+
+    <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
+        <!-- Cover Page -->
+        <header class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-blue-800 mb-2">AdKaro Advertising</h1>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Website Requirements Specification</h2>
+            <div class="border-t border-b border-gray-200 py-4 my-6">
+                <p class="text-gray-600">Version 1.0</p>
+                <p class="text-gray-600">Prepared by: Web Development Team</p>
+                <p class="text-gray-600">Date: <span data-current-date></span></p>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-4">Table of Contents</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><a href="#introduction" class="text-blue-600 hover:underline">1. Introduction</a></li>
+                <li><a href="#overall-description" class="text-blue-600 hover:underline">2. Overall Description</a></li>
+                <li><a href="#system-features" class="text-blue-600 hover:underline">3. System Features & Requirements</a></li>
+                <li><a href="#external-interfaces" class="text-blue-600 hover:underline">4. External Interface Requirements</a></li>
+                <li><a href="#appendices" class="text-blue-600 hover:underline">5. Appendices</a></li>
+            </ul>
+        </section>
+
+        <!-- 1. Introduction -->
+        <section id="introduction" class="mb-12 page-break">
+            <h2 class="text-2xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-4">1. Introduction</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">1.1 Purpose</h3>
+            <p class="mb-4">This document outlines the requirements for the AdKaro Advertising website, a platform for showcasing print services, displaying pricing, and enabling customer inquiries via WhatsApp and email. The website will serve as a digital storefront for the agency's printing services.</p>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">1.2 Scope</h3>
+            <p class="mb-2">The website will include:</p>
+            <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>Service catalog (business cards, posters, banners, etc.)</li>
+                <li>Detailed pricing information for all services</li>
+                <li>Contact forms with WhatsApp and email integration</li>
+                <li>Portfolio/gallery of previous work</li>
+                <li>Responsive design for all device types</li>
+                <li>Admin panel for content management</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">1.3 Definitions & Abbreviations</h3>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                </tr>
+                <tr>
+                    <td>SRS</td>
+                    <td>Software Requirements Specification</td>
+                </tr>
+                <tr>
+                    <td>UI/UX</td>
+                    <td>User Interface/User Experience</td>
+                </tr>
+                <tr>
+                    <td>CMS</td>
+                    <td>Content Management System</td>
+                </tr>
+                <tr>
+                    <td>CTA</td>
+                    <td>Call to Action</td>
+                </tr>
+                <tr>
+                    <td>API</td>
+                    <td>Application Programming Interface</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 2. Overall Description -->
+        <section id="overall-description" class="mb-12 page-break">
+            <h2 class="text-2xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-4">2. Overall Description</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">2.1 Product Perspective</h3>
+            <p class="mb-4">The AdKaro Advertising website will be a professional platform where potential customers can:</p>
+            <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>Browse available print services and pricing</li>
+                <li>View samples of previous work in a portfolio</li>
+                <li>Contact the agency via multiple channels (form, WhatsApp, email)</li>
+                <li>Request quotes for specific projects</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">2.2 User Classes</h3>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <th>User Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Potential Customers</td>
+                    <td>Browse services, view pricing, contact for quotes</td>
+                </tr>
+                <tr>
+                    <td>Existing Customers</td>
+                    <td>Place repeat orders, check status of current orders</td>
+                </tr>
+                <tr>
+                    <td>Admin/Staff</td>
+                    <td>Manage content, view inquiries, update pricing</td>
+                </tr>
+            </table>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">2.3 Operating Environment</h3>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>HTML5, CSS3, JavaScript (React.js optional)</td>
+                </tr>
+                <tr>
+                    <td>Backend</td>
+                    <td>Node.js/Express or PHP (WordPress optional)</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>MySQL or MongoDB</td>
+                </tr>
+                <tr>
+                    <td>Hosting</td>
+                    <td>Shared hosting or cloud platform (AWS/Netlify)</td>
+                </tr>
+                <tr>
+                    <td>Email Service</td>
+                    <td>SMTP, SendGrid, or Mailchimp</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 3. System Features & Requirements -->
+        <section id="system-features" class="mb-12 page-break">
+            <h2 class="text-2xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-4">3. System Features & Requirements</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">3.1 Functional Requirements</h3>
+            
+            <h4 class="font-bold text-gray-800 mt-4 mb-2">FR1: Service Catalog</h4>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <td>FR1.1</td>
+                    <td>Display all print services with categories:
+                        <ul class="list-disc pl-5 mt-1">
+                            <li>Business Cards</li>
+                            <li>Posters & Flyers</li>
+                            <li>Banners & Signage</li>
+                            <li>Brochures & Booklets</li>
+                            <li>Merchandise Printing</li>
+                            <li>Packaging</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FR1.2</td>
+                    <td>Include high-quality images for each service category</td>
+                </tr>
+            </table>
+            
+            <h4 class="font-bold text-gray-800 mt-4 mb-2">FR2: Pricing Display</h4>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <td>FR2.1</td>
+                    <td>Clear pricing tables for each service category</td>
+                </tr>
+                <tr>
+                    <td>FR2.2</td>
+                    <td>Option to show pricing based on quantity tiers</td>
+                </tr>
+                <tr>
+                    <td>FR2.3</td>
+                    <td>Admin ability to update pricing without developer assistance</td>
+                </tr>
+            </table>
+            
+            <h4 class="font-bold text-gray-800 mt-4 mb-2">FR3: Contact System</h4>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <td>FR3.1</td>
+                    <td>Contact form with fields for:
+                        <ul class="list-disc pl-5 mt-1">
+                            <li>Name, Email, Phone</li>
+                            <li>Service interested in</li>
+                            <li>Message/Project details</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FR3.2</td>
+                    <td>Direct WhatsApp integration with pre-filled messages</td>
+                </tr>
+                <tr>
+                    <td>FR3.3</td>
+                    <td>Email notifications to staff when inquiries received</td>
+                </tr>
+            </table>
+            
+            <h4 class="font-bold text-gray-800 mt-4 mb-2">FR4: Portfolio/Gallery</h4>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <td>FR4.1</td>
+                    <td>Showcase previous work with categories</td>
+                </tr>
+                <tr>
+                    <td>FR4.2</td>
+                    <td>Image gallery with lightbox functionality</td>
+                </tr>
+                <tr>
+                    <td>FR4.3</td>
+                    <td>Admin ability to add new portfolio items</td>
+                </tr>
+            </table>
+            
+            <h4 class="font-bold text-gray-800 mt-4 mb-2">FR5: Content Management</h4>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <td>FR5.1</td>
+                    <td>Admin panel for managing:
+                        <ul class="list-disc pl-5 mt-1">
+                            <li>Service descriptions</li>
+                            <li>Pricing information</li>
+                            <li>Portfolio items</li>
+                            <li>Contact information</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">3.2 Non-Functional Requirements</h3>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <th>Requirement</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Performance</td>
+                    <td>&lt;3s page load time, optimized images</td>
+                </tr>
+                <tr>
+                    <td>Responsiveness</td>
+                    <td>Mobile-first design, works on all screen sizes</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Form validation, protection against spam</td>
+                </tr>
+                <tr>
+                    <td>Maintainability</td>
+                    <td>Well-documented code, easy content updates</td>
+                </tr>
+                <tr>
+                    <td>SEO</td>
+                    <td>Search engine optimized structure and content</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 4. External Interface Requirements -->
+        <section id="external-interfaces" class="mb-12 page-break">
+            <h2 class="text-2xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-4">4. External Interface Requirements</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">4.1 User Interface (UI)</h3>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <th>Screen</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Homepage</td>
+                    <td>Services overview, featured work, contact CTA</td>
+                </tr>
+                <tr>
+                    <td>Services Page</td>
+                    <td>Detailed service descriptions with pricing</td>
+                </tr>
+                <tr>
+                    <td>Portfolio Page</td>
+                    <td>Gallery of previous work categorized by service type</td>
+                </tr>
+                <tr>
+                    <td>Contact Page</td>
+                    <td>Contact form, WhatsApp link, business information</td>
+                </tr>
+            </table>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">4.2 APIs & Integrations</h3>
+            <table class="requirement-table mb-4">
+                <tr>
+                    <th>Service</th>
+                    <th>Provider/Technology</th>
+                </tr>
+                <tr>
+                    <td>WhatsApp Integration</td>
+                    <td>WhatsApp Business API with click-to-chat</td>
+                </tr>
+                <tr>
+                    <td>Email Service</td>
+                    <td>SMTP or transactional email service (SendGrid/Mailgun)</td>
+                </tr>
+                <tr>
+                    <td>Form Handling</td>
+                    <td>Form submission with validation and spam protection</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 5. Appendices -->
+        <section id="appendices" class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-4">5. Appendices</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">5.1 Sitemap</h3>
+            <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>Homepage</li>
+                <li>Services
+                    <ul class="list-disc pl-5 mt-1">
+                        <li>Business Cards</li>
+                        <li>Posters & Flyers</li>
+                        <li>Banners & Signage</li>
+                        <li>Brochures & Booklets</li>
+                        <li>Merchandise Printing</li>
+                        <li>Packaging</li>
+                    </ul>
+                </li>
+                <li>Portfolio</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">5.2 Assumptions & Dependencies</h3>
+            <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>Client will provide all content (text, images, pricing)</li>
+                <li>Client will obtain WhatsApp Business account for integration</li>
+                <li>Domain name and hosting will be arranged by client or developer</li>
+                <li>Client will provide timely feedback during development process</li>
+            </ul>
+        </section>
+
+        <!-- Approval Section -->
+        <section class="mt-12 page-break">
+            <h2 class="text-2xl font-bold text-blue-800 border-b border-blue-200 pb-2 mb-6">Approval</h2>
+            <table class="requirement-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Signature</th>
+                    <th>Date</th>
+                </tr>
+                <tr>
+                    <td>[Client Representative Name]</td>
+                    <td>Client Approver</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>[Developer Name]</td>
+                    <td>Developer</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Add current date to cover page
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const dateString = today.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const dateElements = document.querySelectorAll('[data-current-date]');
+            dateElements.forEach(el => {
+                el.textContent = dateString;
+            });
+        });
+    </script>
+</body>
+</html>
